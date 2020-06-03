@@ -1,7 +1,8 @@
 import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
-import './components/Todo.css'
+import './components/Todo.css';
+import styled from 'styled-components';
 
 /**********Initial todo list array *****************/
 const todoList = [
@@ -21,8 +22,15 @@ const todoList = [
     completed: false
   }
 ]
+const StyledApp = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-conent: center;
+  align-items: center;
+`
 
 class App extends React.Component {
+ 
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
@@ -39,7 +47,7 @@ constructor(){
 /***********toggle item  ******************/
 
 toggleItem = itemId => {
-  console.log(itemId);
+  console.log('this is the itemId',itemId);
     // map over array
     // when we find the item we clicked, toggle the purchased field
     // otherwise, return the item untouched
@@ -92,7 +100,7 @@ onSubmit = e => {
 
   render() {
     return (
-      <div className='App-Container'>
+      <StyledApp className='App-Container'>
 
         <h2>Welcome to your Todo App!</h2>
        
@@ -108,7 +116,7 @@ onSubmit = e => {
          onSubmit={this.onSubmit}
           />
 
-      </div>
+      </StyledApp>
     );
   }
 }

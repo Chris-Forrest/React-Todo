@@ -35,14 +35,37 @@ constructor(){
   console.log('todolist data from the constructor',todoList);
 }
 
+/***********toggle item  ******************/
 
-handleChanges = e => {
-  this.setState({ item: e.target.value})
+toggleItem = itemId => {
+  console.log(itemId);
+    // map over array
+    // when we find the item we clicked, toggle the purchased field
+    // otherwise, return the item untouched
+  this.setState({
+    todoList: this.state.todoList.map(item => {
+      if(itemId === item.id){
+       return {
+         ...item,
+         completed: !item.completed
+       }
+      }
+      return item;
+    })
+  })
 }
 
-onSubmit = e => {
-  e.preventDefault()
-  this.props.addItem(e, this.state.item )
+/***********add item  *****************************/
+addItem = (e, item) => {
+  e.preventDefault();
+  const newItem ={
+    task: item,
+    id: Date.now(),
+    completed: false
+  }
+  this.setState({
+    todoList: [...this.state.todoList, newItem]
+  })
 }
 
 clearCompleted = e => {
@@ -55,14 +78,19 @@ clearCompleted = e => {
 
   render() {
     return (
-      <div>
+      <div className='App-Container'>
+
         <h2>Welcome to your Todo App!</h2>
         <TodoForm 
-         handleChanges={this.state.handleChanges}
-         onSubmit={this.onSubmit} 
-         clearCompleted={this.clearCompleted} 
-         />
-        <TodoList todoList={this.state.todoList} />
+         addItem={this.addItem}
+          />
+
+        <TodoList 
+        toggleItem={this.toggleItem}
+        todoList={this.state.todoList} 
+        clearCompleted={this.clearCompleted}
+        />
+
       </div>
     );
   }

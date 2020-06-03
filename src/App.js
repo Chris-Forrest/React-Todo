@@ -1,6 +1,7 @@
 import React from 'react';
 import TodoList from './components/TodoList';
 import TodoForm from './components/TodoForm';
+import './components/Todo.css'
 
 /**********Initial todo list array *****************/
 const todoList = [
@@ -56,8 +57,7 @@ toggleItem = itemId => {
 }
 
 /***********add item  *****************************/
-addItem = (e, item) => {
-  e.preventDefault();
+addItem = item => {
   const newItem ={
     task: item,
     id: Date.now(),
@@ -75,21 +75,38 @@ clearCompleted = e => {
   })
 }
 
+handleChanges = e => {
+  console.log(e.target.value);
+  this.setState({ item: e.target.value})
+}
+
+onSubmit = e => {
+  e.preventDefault()
+  this.addItem(this.state.item)
+  this.setState({
+    item:''
+  })
+  
+}
+
 
   render() {
     return (
       <div className='App-Container'>
 
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm 
-         addItem={this.addItem}
-          />
-
+       
         <TodoList 
         toggleItem={this.toggleItem}
         todoList={this.state.todoList} 
-        clearCompleted={this.clearCompleted}
-        />
+         />
+       
+        <TodoForm 
+         addItem={this.addItem}
+         clearCompleted={this.clearCompleted}
+         handleChanges={this.handleChanges}
+         onSubmit={this.onSubmit}
+          />
 
       </div>
     );

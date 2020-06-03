@@ -36,12 +36,32 @@ constructor(){
 }
 
 
+handleChanges = e => {
+  this.setState({ item: e.target.value})
+}
+
+onSubmit = e => {
+  e.preventDefault()
+  this.props.addItem(e, this.state.item )
+}
+
+clearCompleted = e => {
+  e.preventDefault()
+  this.setState({ 
+      todoList: this.state.todoList.filter(item => !item.completed)
+  })
+}
+
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm />
+        <TodoForm 
+         handleChanges={this.state.handleChanges}
+         onSubmit={this.onSubmit} 
+         clearCompleted={this.clearCompleted} 
+         />
         <TodoList todoList={this.state.todoList} />
       </div>
     );

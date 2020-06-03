@@ -7,8 +7,6 @@ import Todo from './Todo';
 const TodoList = props => {
 
 
-
-  //  render() {
     return(
         <div className='TodoList-container'>
             {props.todoList.map(item => (
@@ -17,7 +15,6 @@ const TodoList = props => {
 
         </div>
     )
-//  }
 }
 
 export default TodoList;

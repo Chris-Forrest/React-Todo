@@ -44,12 +44,6 @@ constructor(){
   console.log('todolist data from the constructor',todoList);
 }
 
-componentDidMount(){
-  this.setState({
-    item: JSON.parse(localStorage.getItem('item'))
-  })
-}
-
 /***********toggle item  ******************/
 
 toggleItem = itemId => {
@@ -101,9 +95,14 @@ onSubmit = e => {
   this.setState({
     item:''
   })
-  
+  this.setState({item:''})
 }
 
+componentDidMount(){
+  this.setState({
+    item: JSON.parse(localStorage.getItem("item"))
+  })
+}
 
 
   render() {

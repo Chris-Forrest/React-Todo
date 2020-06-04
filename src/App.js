@@ -44,6 +44,12 @@ constructor(){
   console.log('todolist data from the constructor',todoList);
 }
 
+componentDidMount(){
+  this.setState({
+    item: JSON.parse(localStorage.getItem('item'))
+  })
+}
+
 /***********toggle item  ******************/
 
 toggleItem = itemId => {
@@ -90,12 +96,14 @@ handleChanges = e => {
 
 onSubmit = e => {
   e.preventDefault()
+  localStorage.setItem('new todo', JSON.stringify(this.state.item))
   this.addItem(this.state.item)
   this.setState({
     item:''
   })
   
 }
+
 
 
   render() {

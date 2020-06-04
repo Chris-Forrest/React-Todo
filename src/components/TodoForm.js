@@ -22,6 +22,7 @@ const TodoForm = props => {
             <StyledForm >
                 <label>New Todo</label>
                 <input
+                placeholder='new todo goes here'
                 type='text'
                 name='todoInput' 
                 value={props.item}

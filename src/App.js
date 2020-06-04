@@ -29,6 +29,7 @@ const StyledApp = styled.div`
   align-items: center;
 `
 
+
 class App extends React.Component {
  
   // you will need a place to store your state in this component.
@@ -72,8 +73,9 @@ addItem = item => {
     completed: false
   }
   this.setState({
-    todoList: [...this.state.todoList, newItem]
+    todoList: [...this.state.todoList, newItem],
   })
+  console.log('this is the new item object', newItem);
 }
 
 clearCompleted = e => {
@@ -84,18 +86,22 @@ clearCompleted = e => {
 }
 
 handleChanges = e => {
-  console.log(e.target.value);
+  //console.log(e.target.value);
   this.setState({ item: e.target.value})
 }
+
+initialState = { item: ''}
+state = this.initialState
 
 onSubmit = e => {
   e.preventDefault()
   localStorage.setItem('new todo', JSON.stringify(this.state.item))
   this.addItem(this.state.item)
+  console.log('this is the new item name',this.state.item);
   this.setState({
-    item:''
+      item:''
   })
-  this.setState({item:''})
+  this.setState(() => this.initialState)
 }
 
 componentDidMount(){

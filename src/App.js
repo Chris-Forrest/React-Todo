@@ -104,10 +104,15 @@ onSubmit = e => {
   this.setState(() => this.initialState)
 }
 
+
+
 componentDidMount(){
+
+  localStorage.setItem('todo list', JSON.stringify(this.state.todoList))
+
   this.setState({
     item: JSON.parse(localStorage.getItem("item"))
-  })
+  }) 
 }
 
 
@@ -119,7 +124,8 @@ componentDidMount(){
        
         <TodoList 
         toggleItem={this.toggleItem}
-        todoList={this.state.todoList} 
+        todoList={this.state.todoList}
+        item={this.state.item} 
          />
        
         <TodoForm 
@@ -127,6 +133,7 @@ componentDidMount(){
          clearCompleted={this.clearCompleted}
          handleChanges={this.handleChanges}
          onSubmit={this.onSubmit}
+         item={this.state.item}
           />
 
       </StyledApp>

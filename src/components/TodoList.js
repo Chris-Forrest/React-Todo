@@ -21,7 +21,7 @@ width: 50%;
 
 const TodoList = props => {
 
-
+console.log('props from todolist component',props)
     return(
         <StyledList className='TodoList-container'>
             {props.todoList.map(item => (
